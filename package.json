@@ -35,6 +35,5 @@
     "chai": "~1.6.1",
     "srand": "~1.1.2",
     "mocha": "~1.10.0"
-  },
-  "keywords": ['brazil', 'cpf', 'cnpj']
+  }
 }
