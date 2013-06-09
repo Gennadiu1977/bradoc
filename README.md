@@ -1,13 +1,13 @@
-# bragen
+# bradoc
 
 node module to gen abr documents numbers
 
 ## Getting Started
-Install the module with: `npm install bragen`
+Install the module with: `npm install bradoc`
 
 ```javascript
-var bragen = require('bragen');
-bragen.awesome(); // "awesome"
+var bradoc = require('bradoc');
+bradoc.awesome(); // "awesome"
 ```
 
 ## Documentation

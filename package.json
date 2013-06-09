@@ -1,6 +1,6 @@
 {
-  "name": "bragen",
-  "description": "node module to gen, validate and format BRA documents numbers.",
+  "name": "bradoc",
+  "description": "node module to gen, validate and format BRAzil's DOCuments numbers.",
   "version": "0.1.0",
   "homepage": "",
   "author": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jugoncalves/bragen"
+    "url": "https://github.com/jugoncalves/bradoc"
   },
   "bugs": {
     "url": ""
@@ -21,7 +21,7 @@
       "url": "/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/bragen",
+  "main": "lib/bradoc",
   "engines": {
     "node": ">= 0.6.0"
   },
