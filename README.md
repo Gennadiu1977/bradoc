@@ -23,7 +23,7 @@ bradoc.cpf.generate();
 To validate a CPF (formatted or not)
 
 ```javascript
-bradoc.cpf.generate(); 
+bradoc.cpf.validate(); 
 ```
 
 ### CNPJ
@@ -36,7 +36,7 @@ bradoc.cnpj.generate();
 To validate a CNPJ (formatted or not)
 
 ```javascript
-bradoc.cnpj.generate(); 
+bradoc.cnpj.validate(); 
 ```
 
 ## Contributing
