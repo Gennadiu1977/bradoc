@@ -7,9 +7,11 @@ Install the module with
 
 `npm install bradoc`
 
+Use the module
+
 ```javascript
 var bradoc = require('bradoc');
-``
+```
 
 ### CPF
 
