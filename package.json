@@ -1,6 +1,6 @@
 {
   "name": "bradoc",
-  "description": "node module to gen, validate and format BRAzil's DOCuments numbers.",
+  "description": "A node module to gen, validate and format Brazil's documents numbers.",
   "version": "0.1.0",
   "homepage": "",
   "author": {
@@ -36,5 +36,5 @@
     "srand": "~1.1.2",
     "mocha": "~1.10.0"
   },
-  "keywords": []
+  "keywords": ['brazil', 'cpf', 'cnpj']
 }

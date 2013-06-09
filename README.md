@@ -20,6 +20,7 @@ To generate a valid CPF (also formatted)
 ```javascript
 bradoc.cpf.generate(); 
 ```
+
 To validate a CPF (formatted or not)
 
 ```javascript
@@ -33,6 +34,7 @@ To generate a valid CNPJ (also formatted)
 ```javascript
 bradoc.cnpj.generate(); 
 ```
+
 To validate a CNPJ (formatted or not)
 
 ```javascript
