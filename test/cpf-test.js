@@ -2,8 +2,8 @@
 
 var chai = require('chai');
 var expect = chai.expect;
-var srand = require('srand');
-var cpf = require('../lib/cpf-checksum.js');
+var cpf = require('../lib/cpf');
+var mock = require('./mock');
 
 describe('CPF Checksum Gen', function() {
 
@@ -12,7 +12,7 @@ describe('CPF Checksum Gen', function() {
   });
 
   it('does accept 10 digits', function() {
-    expect(cpf.checksum([1,2,3,4,5,6,7,8,9, 10])).to.exist;
+    expect(cpf.checksum([1,2,3,4,5,6,7,8,9,10])).to.exist;
   });
 
   it('does not accept more than 10 digits', function() {
@@ -23,29 +23,12 @@ describe('CPF Checksum Gen', function() {
     expect(cpf.checksum([1,2,3,4,5,6,7,8])).to.not.exist;
   });
 
-});
-
-var getArray = function(){
-  var array = [];
-
-  srand.seed(new Date);
-  array.length = 9;
-
-  array.forEach(function(el){
-    el = srand.rand();
-  });
-
-  return array;
-};
-
-describe('CPF Checksum Gen', function() {
-
   it('does return a checksum lower than 11', function() {
-    expect(cpf.checksum(getArray())).to.be.below(11);
+    expect(cpf.checksum(mock.getDigits(9))).to.be.below(11);
   });
 
   it('does return a checksum bigger than or equal to 0', function() {
-    expect(cpf.checksum(getArray())).to.be.at.least(0);
+    expect(cpf.checksum(mock.getDigits(9))).to.be.at.least(0);
   });
 
 });
