@@ -13,6 +13,7 @@ Use the module
 var bradoc = require('bradoc');
 ```
 
+
 ### CPF
 
 To generate a valid CPF (also formatted)
