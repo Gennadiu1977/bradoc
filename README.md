@@ -26,7 +26,7 @@ bradoc.cpf.generate();
 To validate a CPF (formatted or not)
 
 ```javascript
-bradoc.cpf.validate(); 
+bradoc.cpf.validate('423oiu423iu42'); 
 ```
 
 ### CNPJ
@@ -40,7 +40,7 @@ bradoc.cnpj.generate();
 To validate a CNPJ (formatted or not)
 
 ```javascript
-bradoc.cnpj.validate(); 
+bradoc.cnpj.validate('423oiu423iu42'); 
 ```
 
 ## Contributing
