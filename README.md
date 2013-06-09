@@ -13,6 +13,7 @@ Use the module
 var bradoc = require('bradoc');
 ```
 
+Generators and Validators for CPF and CNPJ are available.
 
 ### CPF
 
