@@ -1,6 +1,6 @@
 {
   "name": "bragen",
-  "description": "node module to gen abr documents numbers",
+  "description": "node module to gen, validate and format BRA documents numbers.",
   "version": "0.1.0",
   "homepage": "",
   "author": {

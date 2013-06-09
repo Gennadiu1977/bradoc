@@ -3,7 +3,8 @@
 var chai = require('chai');
 var expect = chai.expect;
 var cpf = require('../lib/cpf');
-var mock = require('./mock');
+var gen = require('../lib/gen');
+var val = require('../lib/valid');
 
 describe('CPF Checksum Gen', function() {
 
@@ -24,11 +25,49 @@ describe('CPF Checksum Gen', function() {
   });
 
   it('does return a checksum lower than 11', function() {
-    expect(cpf.checksum(mock.getDigits(9))).to.be.below(11);
+    expect(cpf.checksum(gen.digits(9))).to.be.below(11);
   });
 
   it('does return a checksum bigger than or equal to 0', function() {
-    expect(cpf.checksum(mock.getDigits(9))).to.be.at.least(0);
+    expect(cpf.checksum(gen.digits(9))).to.be.at.least(0);
+  });
+
+});
+
+describe('CPF Generator', function() {
+
+  it('does return a array', function() {
+    expect(cpf.gen()).to.be.a('array');
+  });
+
+  it('does return 11-length array', function() {
+    expect(cpf.gen().length).to.be.equal(11);
+  });
+
+  it('does return a number array', function() {
+
+    var array = cpf.gen();
+
+    array.forEach(function(el){
+      expect(el).to.be.a('number');
+    });
+
+  });
+
+});
+
+describe('CPF Validator', function() {
+
+  it('does return a boolean', function() {
+    expect(val.is(cpf, cpf.gen())).to.be.a('boolean');
+  });
+
+  it('does return true when valid', function() {
+    expect(val.is(cpf, cpf.gen())).to.be.true;
+  });
+
+  it('does return false when not valid', function() {
+    expect(val.is(cpf, [1,2,3,4,5,6,7,8,9,10,11,12])).to.be.false;
   });
 
 });
