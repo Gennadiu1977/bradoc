@@ -1,6 +1,6 @@
 {
   "name": "bradoc",
-  "description": "A node module to gen, validate and format Brazil's documents numbers.",
+  "description": "A node module to gen, validate and format Brazilian's documents numbers.",
   "version": "0.1.0",
   "homepage": "",
   "author": {
