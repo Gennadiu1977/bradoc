@@ -1,6 +1,6 @@
 # bradoc
 
-A node module to gen, validate and format **Bra**zilian's **doc**uments numbers. 
+A node module to gen, validate and format **Bra**zilian **doc**uments' numbers. 
 
 ## Getting Started
 Install the module with
