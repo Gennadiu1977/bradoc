@@ -1,4 +1,4 @@
-# bradoc
+# bradoc [![Code Climate](https://codeclimate.com/github/jugoncalves/bradoc.png)](https://codeclimate.com/github/jugoncalves/bradoc)
 
 A node module to gen, validate and format **Bra**zilian **doc**uments numbers. 
 
