@@ -26,14 +26,19 @@
     "node": ">= 0.6.0"
   },
   "scripts": {
-    "test": "mocha test/"
+    "test": "./node_modules/.bin/mocha test/",
+    "js": "./node_modules/.bin/browserify index.js > dist/bradoc.js",
+    "min": "./node_modules/.bin/uglifyjs dist/bradoc.js -o dist/bradoc.min.js",
+    "bundle": "npm run js; npm run min;"
   },
   "devDependencies": {
+    "browserify": "^7.0.2",
+    "chai": "~1.6.1",
+    "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.1.1",
     "grunt-contrib-watch": "~0.2.0",
-    "grunt": "~0.4.1",
-    "chai": "~1.6.1",
-    "srand": "~1.1.2",
-    "mocha": "~1.10.0"
+    "mocha": "~1.10.0",
+    "uglify": "^0.1.1",
+    "uglify-js": "^2.4.16"
   }
 }
