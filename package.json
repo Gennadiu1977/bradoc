@@ -32,7 +32,7 @@
     "bundle": "npm run js; npm run min;"
   },
   "devDependencies": {
-    "browserify": "^7.0.2",
+    "browserify": "^11.2.0",
     "chai": "~1.6.1",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.1.1",
