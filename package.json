@@ -23,7 +23,7 @@
   ],
   "main": "lib/bradoc",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.12.7"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/",
@@ -35,6 +35,8 @@
     "browserify": "^11.2.0",
     "chai": "~1.6.1",
     "mocha": "~1.10.0",
+    "chai": "~3.3.0",
+    "mocha": "~2.3.3",
     "uglify-js": "^2.4.16"
   }
 }
