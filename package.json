@@ -5,8 +5,8 @@
   "homepage": "",
   "author": {
     "name": "Jú Gonçalves",
-    "email": "junia.goncalves@gmail.com",
-    "url": "github.com/jugoncalves"
+    "email": "code@jugoncalv.es",
+    "url": "http://jugoncalv.es"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   ],
   "main": "lib/bradoc",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.12.7"
   },
   "scripts": {
     "test": "./node_modules/.bin/mocha test/",
@@ -33,12 +33,10 @@
   },
   "devDependencies": {
     "browserify": "^11.2.0",
+    "chai": "~1.6.1",
+    "mocha": "~1.10.0",
     "chai": "~3.3.0",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.11.3",
-    "grunt-contrib-watch": "~0.6.1",
     "mocha": "~2.3.3",
-    "uglify": "^0.1.1",
     "uglify-js": "^2.4.16"
   }
 }
