@@ -1,7 +1,7 @@
 {
   "name": "bradoc",
   "description": "A node module to gen, validate and format Brazilian documents' numbers.",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "homepage": "",
   "author": {
     "name": "Jú Gonçalves",
