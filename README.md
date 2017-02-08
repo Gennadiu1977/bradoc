@@ -46,9 +46,9 @@ bradoc.cnpj.validate('423oiu423iu42');
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. 
 
-Lint and test your code using [Grunt](http://gruntjs.com/). For that, watch the files to lint it automagically with:
+Test your code using [Mocha](https://mochajs.org/). For that, use:
 
-`grunt watch`
+`npm test`
 
 ## License
 Copyright (c) 2013 Jú Gonçalves  
