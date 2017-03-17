@@ -60,4 +60,10 @@ describe('CNPJ Validator', function() {
     expect(val.is(cnpj, [1,2,3,4,5,6,7,8,9,10,11,12,13,14])).to.be.false;
   });
 
+  it('does return false when exists invalid characters', function() {
+    var test = cnpj.gen();
+    test.push('x');
+    expect(val.is(cnpj, val.deformat(cnpj.format(test)))).to.be.false;
+  });
+
 });

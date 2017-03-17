@@ -70,4 +70,10 @@ describe('CPF Validator', function() {
     expect(val.is(cpf, [1,2,3,4,5,6,7,8,9,10,11,12])).to.be.false;
   });
 
+  it('does return false when exists invalid characters', function() {    
+    var test = cpf.gen();
+    test.push('x');
+    expect(val.is(cpf, val.deformat(cpf.format(test)))).to.be.false;
+  });
+
 });
