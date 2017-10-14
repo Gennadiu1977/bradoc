@@ -33,7 +33,7 @@ describe('CNPJ Checksum Gen', () => {
 });
 
 describe('CNPJ Generator', () => {
-  it('does return a array', () => {
+  it('does return an array', () => {
     expect(cnpj.gen()).to.be.a('array');
   });
 

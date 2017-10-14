@@ -33,7 +33,7 @@ describe('CPF Checksum Gen', () => {
 });
 
 describe('CPF Generator', () => {
-  it('does return a array', () => {
+  it('does return an array', () => {
     expect(cpf.gen()).to.be.a('array');
   });
 
