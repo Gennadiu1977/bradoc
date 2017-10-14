@@ -12,21 +12,14 @@ module.exports = require('./lib/bradoc')
 
  'use strict';
 
-var cpfdoc = require('./cpf');
-var cnpjdoc = require('./cnpj');
-var val = require('./valid');
+const cpfdoc = require('./cpf');
+const cnpjdoc = require('./cnpj');
+const val = require('./valid');
 
-var doc = function(doc){
-
+var doc = doc => {
   return {
-    validate: function(number){
-      number = doc.deformat(number);
-      return val.is(doc,number);
-    },
-
-    generate : function(){
-      return doc.format(doc.gen());
-    }
+    validate: number => val.is(doc, doc.deformat(number)),
+    generate: () => doc.format(doc.gen())
   };
 };
 
@@ -35,24 +28,23 @@ exports.cnpj = doc(cnpjdoc);
 },{"./cnpj":3,"./cpf":4,"./valid":6}],3:[function(require,module,exports){
 'use strict';
 
-var gen = require('./gen');
-var val = require('./valid');
+const gen = require('./gen');
+const val = require('./valid');
 
-exports.checksum = function(digits) {
-  if(digits.length !== 12 && digits.length !== 13){
-    return null;
+exports.checksum = digits => {
+  if (![12, 13].includes(digits.length)) {
+    return;
   }
 
-  var weights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-  if (digits.length !== 12)
+  let weights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+  
+  if (digits.length !== 12) {
     weights.unshift(6);
+  }
 
-  var sum = 0;
-  var code, checksum;
+  let code, checksum;
 
-  digits.forEach(function(el, index){
-    sum += el * weights[index];
-  });
+  let sum = digits.reduce((sum, current, index) => sum += current * weights[index], 0);
 
   code = sum % 11;
   checksum = code < 2 ? 0 : 11 - code;
@@ -60,9 +52,9 @@ exports.checksum = function(digits) {
   return checksum;
 };
 
-exports.genChecksum = function(digits){
-  if(!(digits instanceof Array) && digits){
-    return null;
+exports.genChecksum = digits => {
+  if(!(digits instanceof Array)){
+    return;
   }
 
   digits.push(this.checksum(digits));
@@ -71,18 +63,16 @@ exports.genChecksum = function(digits){
   return digits;
 };
 
-exports.type = function(){
-  return 'cnpj';
-};
+exports.type = () => 'cnpj';
 
-exports.gen = function(){
-  var cnpj = gen.digits(12);
+exports.gen = () => {
+  let cnpj = gen.digits(12);
 
   return this.genChecksum(cnpj);
 };
 
-exports.format = function(cnpj){
-  var regex = /^([\d]{2})([\d]{3})([\d]{3})([\d]{4})([\d]{2})$/;
+exports.format = cnpj => {
+  let regex = /^([\d]{2})([\d]{3})([\d]{3})([\d]{4})([\d]{2})$/;
   
   return val.format(cnpj, regex, '$1.$2.$3/$4-$5');
 };
@@ -92,54 +82,45 @@ exports.deformat = val.deformat;
 },{"./gen":5,"./valid":6}],4:[function(require,module,exports){
 'use strict';
 
-var gen = require('./gen');
-var val = require('./valid');
+const gen = require('./gen');
+const val = require('./valid');
 
-exports.checksum = function(digits) {
-  
-  if(digits.length !== 9 && digits.length !== 10){
-    return null;
+exports.checksum = digits => {
+  if (![10,9].includes(digits.length)){
+    return;
   }
 
-  var sum = 0;
-  var code, checksum;
-  var counter = digits.length === 9 ? 10 : 11;
+  let counter = digits.length === 9 ? 10 : 11;
 
-  digits.forEach(function(el){
-    sum = sum + (el * counter);
-    counter = counter - 1;
-  });
+  let sum = digits.reduce((previous, current) => previous += current * counter--, 0);
 
-  code = sum % 11;
-  checksum = code < 2 ? 0 : 11 - code;
+  let code = sum % 11;
+  let checksum = code < 2 ? 0 : 11 - code;
 
   return checksum;
 };
 
-exports.genChecksum = function(digits){
+exports.genChecksum = digits => {
   if(!(digits instanceof Array)){
-    return null;
+    return;
   }
 
   digits.push(this.checksum(digits));
   digits.push(this.checksum(digits));
 
   return digits;
-
 };
 
-exports.type = function(){
-  return 'cpf';
-};
+exports.type = () => 'cpf';
 
-exports.gen = function(){
-  var cpf = gen.digits(9);
+exports.gen = () => {
+  let cpf = gen.digits(9);
 
   return this.genChecksum(cpf);
 };
 
-exports.format = function(cpf){
-  var regex = /^([\d]{3})([\d]{3})([\d]{3})([\d]{2})$/;
+exports.format = cpf => {
+  let regex = /^([\d]{3})([\d]{3})([\d]{3})([\d]{2})$/;
 
   return val.format(cpf, regex, '$1.$2.$3-$4');
 };
@@ -148,35 +129,28 @@ exports.deformat = val.deformat;
 },{"./gen":5,"./valid":6}],5:[function(require,module,exports){
 'use strict';
 
-exports.digits = function(number) {
-  if(number !== 9 && number !== 12){
-    return null;
+exports.digits = number => {
+  if (![9, 12].includes(number)) {
+    return;
   }
 
-  var array = [];
-  var i = 0;
-
-  for(; i < number; i++){
-    array.push(1 + Math.floor(Math.random() * 9));
-  }
-
-  return array;
+  return [...Array(number).keys()].map(() => 1 + Math.floor(Math.random() * 9));
 };
 },{}],6:[function(require,module,exports){
 'use strict';
 
-exports.is = function(doc, toval){
+exports.is = (doc, toval) => {
   if(!(toval instanceof Array) && doc.type() !== 'doc' && doc.type !== 'cnpj'){
     return false;
   }
 
-  var limit = doc.type() === 'cpf' ? 9 : 12;
+  let limit = doc.type() === 'cpf' ? 9 : 12;
 
-  if(toval.length - 2 > limit || toval.length - 2 < limit){
+  if(toval.length - 2 > limit || toval.length - 2 < limit) {
     return false;
   }
 
-  var csgen = doc.genChecksum(toval.slice(0,limit));
+  let csgen = doc.genChecksum(toval.slice(0,limit));
 
   if(csgen[limit] === toval[limit] && csgen[limit + 1] === toval[limit + 1]){
     return true;
@@ -185,33 +159,23 @@ exports.is = function(doc, toval){
   return false;
 };
 
-exports.format = function(doc, regex, replace){
+exports.format = (doc, regex, replace) => {
   if(!(doc instanceof Array)){
-    return null;
+    return;
   }
 
-  doc = doc.join('').replace(regex, replace);
-
-  return doc;
+  return doc.join('').replace(regex, replace);
 };
 
-exports.deformat = function(doc){
-  var check = typeof doc === 'string';
-  if(!check){
-    return null;
+exports.deformat = (doc) => {
+  if(typeof doc !== 'string') {
+    return;
   }
-
-  var regex = /[^0-9]+/g;
+  
+  let regex = /[.\-\/]+/g;
   doc = doc.replace(regex, '');
 
-  var i = 0,
-      docArray = [];
-
-  for(; i <= doc.length - 1; i++){
-    docArray.push(parseInt(doc[i], 0));
-  }
-
-  return docArray;
+  return [...Array(doc.length).keys()].map(number => parseInt(doc[number], 0));
 };
 },{}]},{},[1])(1)
 });
